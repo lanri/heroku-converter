@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Telkomsigma Converter File Upload</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<section class="my-5">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-7">
+
+                <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+                <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                    <h2>Upload File Data</h2>
+                    <div class="form-group">
+                        <input type="file" name="uploadfile" class="form-control-file" id="uploadInput" onchange="myChangeFunction(this)">
+                    </div>
+                    <h2>Upload File Parameter</h2>
+                    <div class="form-group">
+                        <input type="file" name="fileparam" class="form-control-file">
+                    </div>
+                    <h2>Converted Filename</h2>
+                    <div class="form-group">
+                        <input type="text" name="filename" class="ui-icon-pencil" id="fileNameInput" required>
+                        <input type="text" name="ext" class="ui-icon-pencil" value=".txt" disabled="true">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Convert</button>
+                </form>
+                <a href="/files" class="btn btn-light btn-block col-md-6" role="button">See Uploaded File</a>
+            </div>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div th:insert="fragments/footer :: footer"></div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
+
+<script type="text/javascript">
+    function myChangeFunction(input1) {
+        var input2 = document.getElementById('fileNameInput');
+        var originalName = input1.value.replace(/^.*[\\\/]/, '');
+        var name = originalName.substr(0, originalName.lastIndexOf('.'));
+        input2.value = name;
+    }
+</script>
