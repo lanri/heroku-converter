@@ -139,9 +139,9 @@ public class FileStorageImpl implements FileStorage {
         convFile.createNewFile();
         try(InputStream is = file.getInputStream()) {
             Date date = Calendar.getInstance().getTime();
-            DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
+            DateFormat dateFormat = new SimpleDateFormat("yyyyMMDDhhmmss");
             String strDate = dateFormat.format(date);
-            Files.copy(is, this.rootLocationParam.resolve(strDate+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(is, this.rootLocationParam.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         }
         return convFile;
     }

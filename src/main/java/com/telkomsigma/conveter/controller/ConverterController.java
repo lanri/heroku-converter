@@ -52,15 +52,13 @@ public class ConverterController {
         try {
             //validate file Xlsx or Xls
             String ext = FilenameUtils.getExtension(file.getOriginalFilename());
-            log.info("ext : " + ext + " , file.toString() : " + file.toString());
             if (ext.equalsIgnoreCase("xlsx") || ext.equalsIgnoreCase("xls")) {
 
                 //convert to text file
                 StringBuffer data = converter.convert(file,param,attributes);
-                log.info("Data : " + data);
                 //store to filestorage
                 Date date = Calendar.getInstance().getTime();
-                DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");
+                DateFormat dateFormat = new SimpleDateFormat("yyyyMMDDhhmmss");
                 String strDate = dateFormat.format(date);
                 fileStorage.store(file, data,fname+strDate);
                 fileStorage.storeParam(param);

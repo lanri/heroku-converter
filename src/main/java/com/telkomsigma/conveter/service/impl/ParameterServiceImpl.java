@@ -45,7 +45,7 @@ public class ParameterServiceImpl implements ParameterService {
             rowIterator.next();
             jumlahRow++;
         }
-        log.info("jumlahRow : " + jumlahRow);
+        //log.info("jumlahRow : " + jumlahRow);
 
         Iterator<Cell> cellIterator = sheetp.getRow(0).cellIterator();
         int jumlahCell = 0;
@@ -53,7 +53,7 @@ public class ParameterServiceImpl implements ParameterService {
             cellIterator.next();
             jumlahCell++;
         }
-        log.info("jumlahCell : " + jumlahCell);
+        //log.info("jumlahCell : " + jumlahCell);
 
         HashMap<String,Parameter> params = new HashMap<>();
 
@@ -66,8 +66,6 @@ public class ParameterServiceImpl implements ParameterService {
             parameter.setKeterangan(sheetp.getRow(k).getCell(4).getStringCellValue());
             params.put(parameter.getValue(),parameter);
         }
-
-        log.info("PARAMETER : "+params);
         return params;
     }
 
@@ -85,9 +83,6 @@ public class ParameterServiceImpl implements ParameterService {
         }
 
         //validasi panjang
-        int paramLength = p.getPanjang();
-        int fileLength = v.length();
-        log.info(" panjang file "+fileLength+", panjang param :"+paramLength);
         if (p.getPanjang()<v.length()){
             throw new ExceptionConvertHandler(ErrorConstant.ERROR_PARAM_LENGTH+p.getPanjang()+
                     ErrorConstant.ERROR_FILE_LENGTH+ v.length()+" "+'!'+

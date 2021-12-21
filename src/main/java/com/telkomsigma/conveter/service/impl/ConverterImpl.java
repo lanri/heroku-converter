@@ -46,11 +46,11 @@ public class ConverterImpl implements Converter {
             paramInfo = parameterService.processParam(param);
 
             data = processFile(inputFile, paramInfo, data);
-            log.info("buffer : " + data);
+            //log.info("buffer : " + data);
 
             return data;
         } catch (Exception e) {
-            log.info("buffers : " + data);
+            //log.info("buffers : " + data);
             throw new Exception(e);
         }
 
@@ -70,7 +70,7 @@ public class ConverterImpl implements Converter {
 
         workbookFile = parameterService.getTypeExcel(workbookFile, ext, inputStreamFile);
         // Iterate through each rows from first sheet
-        log.info("sheet : " + workbookFile.getNumberOfSheets());
+        //log.info("sheet : " + workbookFile.getNumberOfSheets());
         Sheet sheet = workbookFile.getSheetAt(0);
 
         Iterator<Row> rowIterator = sheet.iterator();
@@ -79,14 +79,12 @@ public class ConverterImpl implements Converter {
             rowIterator.next();
             jumlahRow++;
         }
-        log.info("jumlahRow : " + jumlahRow);
         Iterator<Cell> cellIterator = sheet.getRow(0).cellIterator();
         int jumlahCell = 0;
         while (cellIterator.hasNext()) {
             cellIterator.next();
             jumlahCell++;
         }
-        log.info("jumlahCell : " + jumlahCell);
 
         //set Header
         for (int j = 0; j < jumlahCell; j++) {
@@ -97,7 +95,6 @@ public class ConverterImpl implements Converter {
 
         Iterator<Row> rowI = sheet.iterator();
         for (int k = 1; k < jumlahRow; k++) {
-            log.info("row ke -: " + k);
             rowcell[0] = k + 1;
             for (int l = 0; l < jumlahCell - 1; l++) {
                 rowcell[1] = l + 1;
@@ -107,7 +104,6 @@ public class ConverterImpl implements Converter {
                     String v;
                     if (p.getKeterangan().equals(header)) {
                         //set Header
-                        log.info("TYPE : " + cell.getCellType());
                         switch (cell.getCellType()) {
                             case Cell.CELL_TYPE_NUMERIC:
                                 v = String.valueOf((int) cell.getNumericCellValue()).replaceAll("\\s", "");
@@ -145,7 +141,6 @@ public class ConverterImpl implements Converter {
                     }
                 } catch (NullPointerException e) {
                     data.append(" ");
-                    log.info(e.getMessage());
                     if (p.getMandatory().equals(Constant.mandatory)) {
                         //error mandatory
                         throw new ExceptionConvertHandler(ErrorConstant.ERROR_MANDATORY + p.getValue() + '!' +
