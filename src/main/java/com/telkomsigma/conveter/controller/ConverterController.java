@@ -8,15 +8,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,9 +56,9 @@ public class ConverterController {
                 //convert to text file
                 StringBuffer data = converter.convert(file,param,attributes);
                 //store to filestorage
-                Date date = Calendar.getInstance().getTime();
-                DateFormat dateFormat = new SimpleDateFormat("yyyyMMDDhhmmss");
-                String strDate = dateFormat.format(date);
+                DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                String strDate = dateFormat.format(timestamp);
                 fileStorage.store(file, data,fname+strDate);
                 fileStorage.storeParam(param);
                 // return success response
@@ -82,5 +81,10 @@ public class ConverterController {
     public String getErrorException(ExceptionConvertHandler ex,RedirectAttributes attributes) {
         attributes.addFlashAttribute("message", ex.getMessage());
         return "redirect:/";
+    }
+
+    @GetMapping("/about")
+    public String getListFiles() {
+        return "about";
     }
 }

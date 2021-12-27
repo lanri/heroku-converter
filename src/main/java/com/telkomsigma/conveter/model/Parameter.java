@@ -12,6 +12,7 @@ public class Parameter {
     private Integer Panjang;
     private String Mandatory;
     private String Keterangan;
+    private Integer Size;
     private String Value;
 
 }

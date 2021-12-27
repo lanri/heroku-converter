@@ -15,6 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -138,9 +139,7 @@ public class FileStorageImpl implements FileStorage {
         File convFile = new File(file.getOriginalFilename());
         convFile.createNewFile();
         try(InputStream is = file.getInputStream()) {
-            Date date = Calendar.getInstance().getTime();
-            DateFormat dateFormat = new SimpleDateFormat("yyyyMMDDhhmmss");
-            String strDate = dateFormat.format(date);
+
             Files.copy(is, this.rootLocationParam.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         }
         return convFile;

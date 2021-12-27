@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+    <title>About</title>
+</head>
+<div th:insert="fragments/header :: header"></div>
+<body>
+<div class="col-md-7 square" style="background-color: lightgray">
+    <h4>HOW TO INSTALL CONVERTER APP IN MY COMPUTER</h4>
+    <br><br>
+
+    <p>1. Download new release jar</p>
+    <a href="https://drive.google.com/file/d/1PCMOiuTWOXE88w4o-63RK-FYWiIMw6un/view?usp=sharing">Download Converter.jar</a>
+    <p>2. Open Command Prompt , Check java availibilty</p>
+        <p>  java -version</p>
+    <p>3.a. If java 8 available , run jar</p>
+    <p>3.b. If java 8 not available , install java 8 first</p>
+    <a href="https://www.java.com/en/download/manual.jsp">https://www.java.com/en/download/manual.jsp</a>
+    <p>4. Run jar</p>
+        <p>  java -jar c:\pathtojarfile.jar</p>
+</div>
+</body>
+<div class="col-md-7 mx-auto" th:insert="fragments/footer :: footer"></div>
+</html>

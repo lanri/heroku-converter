@@ -2,6 +2,7 @@ package com.telkomsigma.conveter.model;
 
 public final class Constant {
     public final static String header = "Header";
+    public final static String detail = "Detail";
     public final static String alphaNumeric = "AN";
     public final static String numeric = "N";
     public final static String mandatory = "M";
