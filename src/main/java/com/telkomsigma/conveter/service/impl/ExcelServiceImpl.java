@@ -75,11 +75,11 @@ public class ExcelServiceImpl implements ExcelService {
 
                     if (p.getKeterangan().equals(Constant.header) && k == 1) {
                         //set Header
-                        log.info("HEADER");
+                        //log.info("HEADER");
                         dataHeader = validateCell(cell,p,rowcell,dataHeader);
                     } else if (!p.getKeterangan().equals(Constant.header)){
                         //set Detail
-                        log.info("DETAIL");
+                        //log.info("DETAIL");
                         dataDetail = validateCell(cell,p,rowcell,dataDetail);
 
                     }
@@ -115,13 +115,14 @@ public class ExcelServiceImpl implements ExcelService {
                     selisih = p.getPanjang()-v.length();
                     log.info("selisih "+selisih);
                     for (int i = 0; i <= selisih; i++) {
-                        data.append("0");
+                        data.append(" ");
                     }
                 }
                 data.append(v);
                 break;
             case Cell.CELL_TYPE_STRING:
-                v = cell.getStringCellValue().replaceAll("\\s", "");
+                //v = cell.getStringCellValue().replaceAll("\\s", "");
+                v = cell.getStringCellValue();
                 parameterService.validateParam(p, Cell.CELL_TYPE_STRING, v, rowcell);
                 data.append(v);
                 //validate size
