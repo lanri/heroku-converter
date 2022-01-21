@@ -23,6 +23,7 @@ public class ParameterServiceImpl implements ParameterService {
 
         
         log.info("excelinfo"+excelInfo.toString());
+log.info("excelinfo"+excelInfo.getSheet().getRow(1).getCell(0));
 for (int k = 1; k < excelInfo.getRow(); k++) {
             Parameter parameter = new Parameter();
             parameter.setValue(excelInfo.getSheet().getRow(k).getCell(0).getStringCellValue());
