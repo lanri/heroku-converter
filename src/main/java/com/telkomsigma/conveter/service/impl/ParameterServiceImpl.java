@@ -21,7 +21,9 @@ public class ParameterServiceImpl implements ParameterService {
 
         HashMap<String,Parameter> params = new HashMap<>();
 
-        for (int k = 1; k < excelInfo.getRow(); k++) {
+        
+        log.info("excelinfo"+excelInfo.toString());
+for (int k = 1; k < excelInfo.getRow(); k++) {
             Parameter parameter = new Parameter();
             parameter.setValue(excelInfo.getSheet().getRow(k).getCell(0).getStringCellValue());
             parameter.setType(excelInfo.getSheet().getRow(k).getCell(1).getStringCellValue());
