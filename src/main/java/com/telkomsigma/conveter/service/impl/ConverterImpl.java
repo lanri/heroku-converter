@@ -34,7 +34,8 @@ public class ConverterImpl implements Converter {
         try {
             HashMap<String, Parameter> paramInfo = new HashMap<>();
             InputStream inputStreamFile = param.getInputStream();
-            Sheet sheet = excelService.getTypeExcel(
+            Sheet sheet = new Sheet();
+sheet = excelService.getTypeExcel(
                     FilenameUtils.getExtension(param.getOriginalFilename())
                     ,inputStreamFile);
 
