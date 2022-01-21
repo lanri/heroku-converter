@@ -37,11 +37,15 @@ public class ConverterImpl implements Converter {
             Sheet sheet = excelService.getTypeExcel(
                     FilenameUtils.getExtension(param.getOriginalFilename())
                     ,inputStreamFile);
+            int row =0;
+            int cell=0;
+            row=excelService.getLengthRow(sheet);
+            cell=excelService.getLengthCell(sheet);
 
             ExcelInfo excelInfo = new ExcelInfo();
             excelInfo.setSheet(sheet);
-            excelInfo.setRow(excelService.getLengthRow(sheet));
-            excelInfo.setCell(excelService.getLengthCell(sheet));
+            excelInfo.setRow(row);
+            excelInfo.setCell(cell);
 
             paramInfo = parameterService.processParam(param,excelInfo);
 
