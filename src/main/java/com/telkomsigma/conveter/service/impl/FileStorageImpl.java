@@ -1,6 +1,6 @@
 package com.telkomsigma.conveter.service.impl;
 
-import com.telkomsigma.conveter.service.FileStorage;
+import com.telkomsigma.conveter.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.stream.Stream;
 
 @Service
-public class FileStorageImpl implements FileStorage {
+public class FileStorageImpl implements FileStorageService {
 
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
 

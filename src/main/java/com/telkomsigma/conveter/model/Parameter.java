@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Parameter {
-    private String Type;
-    private Integer Panjang;
-    private String Mandatory;
-    private String Keterangan;
-    private Integer Size;
-    private String Value;
+    private String type;
+    private Integer panjang;
+    private String mandatory;
+    private Integer bitMsg;
+    private String keterangan;
+    private String catatan;
+    private String value;
+
 
 }

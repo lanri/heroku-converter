@@ -9,4 +9,8 @@ public final class Constant {
     public final static String optional = "O";
     public final static String xlsx = "xlsx";
     public final static String xls = "xls";
+    public final static String zero = "0";
+    public final static Integer overBooking = 001;
+    public final static Integer clearing = 002;
+    public final static Integer rtgs = 003;
 }

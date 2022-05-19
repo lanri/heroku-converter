@@ -1,4 +1,4 @@
-package com.telkomsigma.conveter.model;
+package com.telkomsigma.conveter.errorHandler;
 
 public final class ErrorConstant {
     public final static String ERROR_MANDATORY = "Field is Mandatory on ";

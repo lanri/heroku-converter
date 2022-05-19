@@ -1,5 +1,7 @@
 package com.telkomsigma.conveter.service.impl;
 
+import com.telkomsigma.conveter.errorHandler.ErrorConstant;
+import com.telkomsigma.conveter.errorHandler.ExceptionConvertHandler;
 import com.telkomsigma.conveter.model.*;
 import com.telkomsigma.conveter.service.ExcelService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -75,11 +77,11 @@ public class ExcelServiceImpl implements ExcelService {
 
                     if (p.getKeterangan().equals(Constant.header) && k == 1) {
                         //set Header
-                        //log.info("HEADER");
+                        log.info("HEADER");
                         dataHeader = validateCell(cell,p,rowcell,dataHeader);
                     } else if (!p.getKeterangan().equals(Constant.header)){
                         //set Detail
-                        //log.info("DETAIL");
+                        log.info("DETAIL");
                         dataDetail = validateCell(cell,p,rowcell,dataDetail);
 
                     }
@@ -91,6 +93,11 @@ public class ExcelServiceImpl implements ExcelService {
                         throw new ExceptionConvertHandler(ErrorConstant.ERROR_MANDATORY + p.getValue() + '!' +
                                 ErrorConstant.ERROR_ROW + rowcell[0] +
                                 ErrorConstant.ERROR_CELL + rowcell[1] + ")");
+                    }else if(p.getMandatory().equals(Constant.optional)){
+                    	//kalau optional skip
+                    }else{
+                    	// m/o 
+                    	//cek catatan
                     }
                 }
             }

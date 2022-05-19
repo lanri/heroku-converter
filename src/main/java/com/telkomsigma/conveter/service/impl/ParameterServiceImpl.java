@@ -1,5 +1,7 @@
 package com.telkomsigma.conveter.service.impl;
 
+import com.telkomsigma.conveter.errorHandler.ErrorConstant;
+import com.telkomsigma.conveter.errorHandler.ExceptionConvertHandler;
 import com.telkomsigma.conveter.model.*;
 import com.telkomsigma.conveter.service.ParameterService;
 import org.slf4j.Logger;
@@ -19,16 +21,24 @@ public class ParameterServiceImpl implements ParameterService {
     @Override
     public HashMap<String,Parameter> processParam(MultipartFile param, ExcelInfo excelInfo) throws IOException {
 
+    	log.info(" param : "+param.getOriginalFilename());
+    			
         HashMap<String,Parameter> params = new HashMap<>();
 
+        log.info("value : ",excelInfo.getSheet().getRow(2).getCell(1).getStringCellValue());
+
         for (int k = 1; k < excelInfo.getRow(); k++) {
-            Parameter parameter = new Parameter();
-            parameter.setValue(excelInfo.getSheet().getRow(k).getCell(0).getStringCellValue());
-            parameter.setType(excelInfo.getSheet().getRow(k).getCell(1).getStringCellValue());
-            parameter.setPanjang((int) excelInfo.getSheet().getRow(k).getCell(2).getNumericCellValue());
-            //parameter.setSize((int) excelInfo.getSheet().getRow(k).getCell(3).getNumericCellValue());
-            parameter.setMandatory(excelInfo.getSheet().getRow(k).getCell(3).getStringCellValue());
-            parameter.setKeterangan(excelInfo.getSheet().getRow(k).getCell(4).getStringCellValue());
+        	Parameter parameter = new Parameter();
+            parameter.setValue(excelInfo.getSheet().getRow(k).getCell(1).getStringCellValue());
+            log.info("value : ",excelInfo.getSheet().getRow(k).getCell(1).getStringCellValue());
+            parameter.setType(excelInfo.getSheet().getRow(k).getCell(2).getStringCellValue());
+            log.info("type : ",excelInfo.getSheet().getRow(k).getCell(2).getStringCellValue());
+            parameter.setPanjang((int) excelInfo.getSheet().getRow(k).getCell(3).getNumericCellValue());
+            log.info("panjang : ",(int) excelInfo.getSheet().getRow(k).getCell(3).getNumericCellValue());
+            parameter.setBitMsg((int) excelInfo.getSheet().getRow(k).getCell(4).getNumericCellValue());
+            parameter.setMandatory(excelInfo.getSheet().getRow(k).getCell(5).getStringCellValue());
+            parameter.setKeterangan(excelInfo.getSheet().getRow(k).getCell(6).getStringCellValue());
+            parameter.setCatatan(excelInfo.getSheet().getRow(k).getCell(7).getStringCellValue());
             params.put(parameter.getValue(),parameter);
         }
         return params;
@@ -43,9 +53,9 @@ public class ParameterServiceImpl implements ParameterService {
                     ErrorConstant.ERROR_ROW+rowcell[0]+
                     ErrorConstant.ERROR_CELL+rowcell[1]+")");
         } else if (p.getType().equals(Constant.numeric) && cellType == 1) {
-            throw new ExceptionConvertHandler(ErrorConstant.ERROR_NOT_NUMERIC + v +'!'+
-                    ErrorConstant.ERROR_ROW+rowcell[0]+
-                    ErrorConstant.ERROR_CELL+rowcell[1]+")");
+	            throw new ExceptionConvertHandler(ErrorConstant.ERROR_NOT_NUMERIC + v +'!'+
+	                    ErrorConstant.ERROR_ROW+rowcell[0]+
+	                    ErrorConstant.ERROR_CELL+rowcell[1]+")");
         }
 
         //validasi panjang
@@ -55,7 +65,14 @@ public class ParameterServiceImpl implements ParameterService {
                     ErrorConstant.ERROR_ROW+rowcell[0]+
                     ErrorConstant.ERROR_CELL+rowcell[1]+")");
         }
+        
+        //validasi bitMsg
+        
+        //validasi catatan
+        
     }
+    
+    
 
 
 }

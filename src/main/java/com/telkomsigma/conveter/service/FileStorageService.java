@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface FileStorage {
+public interface FileStorageService {
     public void store(MultipartFile file,StringBuffer data,String fname);
     public void storeParam(MultipartFile file);
     public Resource loadFile(String filename);

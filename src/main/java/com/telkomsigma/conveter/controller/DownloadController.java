@@ -1,7 +1,7 @@
 package com.telkomsigma.conveter.controller;
 
 import com.telkomsigma.conveter.model.FileInfo;
-import com.telkomsigma.conveter.service.FileStorage;
+import com.telkomsigma.conveter.service.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class DownloadController {
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
-    FileStorage fileStorage;
+    FileStorageService fileStorage;
 
     /*
      * Retrieve Files' Information
