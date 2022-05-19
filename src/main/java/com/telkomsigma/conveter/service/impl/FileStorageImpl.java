@@ -44,15 +44,15 @@ public class FileStorageImpl implements FileStorageService {
         }
     }
 
-    @Override
-    public void storeParam(MultipartFile file) {
-        try {
-            File fil = convert(file);
-            //Files.copy(fil, this.rootLocationParam.resolve(fil.getName()), StandardCopyOption.REPLACE_EXISTING);
-        } catch (Exception e) {
-            throw new RuntimeException("FAIL! -> message = " + e.getMessage());
-        }
-    }
+//    @Override
+//    public void storeParam(MultipartFile file) {
+//        try {
+//            File fil = convert(file);
+//            //Files.copy(fil, this.rootLocationParam.resolve(fil.getName()), StandardCopyOption.REPLACE_EXISTING);
+//        } catch (Exception e) {
+//            throw new RuntimeException("FAIL! -> message = " + e.getMessage());
+//        }
+//    }
 
     @Override
     public Resource loadFile(String filename) {
@@ -69,20 +69,20 @@ public class FileStorageImpl implements FileStorageService {
         }
     }
 
-    @Override
-    public Resource loadFileParam(String filename) {
-        try {
-            Path file = rootLocationParam.resolve(filename);
-            Resource resource = new UrlResource(file.toUri());
-            if(resource.exists() || resource.isReadable()) {
-                return resource;
-            }else{
-                throw new RuntimeException("FAIL!");
-            }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException("Error! -> message = " + e.getMessage());
-        }
-    }
+//    @Override
+//    public Resource loadFileParam(String filename) {
+//        try {
+//            Path file = rootLocationParam.resolve(filename);
+//            Resource resource = new UrlResource(file.toUri());
+//            if(resource.exists() || resource.isReadable()) {
+//                return resource;
+//            }else{
+//                throw new RuntimeException("FAIL!");
+//            }
+//        } catch (MalformedURLException e) {
+//            throw new RuntimeException("Error! -> message = " + e.getMessage());
+//        }
+//    }
 
     @Override
     public void deleteAll() {
@@ -95,11 +95,11 @@ public class FileStorageImpl implements FileStorageService {
         FileSystemUtils.deleteRecursively(file);
     }
 
-    @Override
-    public void deleteParam(String filename) throws IOException {
-        Path file = rootLocationParam.resolve(filename);
-        FileSystemUtils.deleteRecursively(file);
-    }
+//    @Override
+//    public void deleteParam(String filename) throws IOException {
+//        Path file = rootLocationParam.resolve(filename);
+//        FileSystemUtils.deleteRecursively(file);
+//    }
 
     @Override
     public void init() {
@@ -123,17 +123,17 @@ public class FileStorageImpl implements FileStorageService {
         }
     }
 
-    @Override
-    public Stream loadParams() {
-        try {
-            return Files.walk(this.rootLocationParam, 1)
-                    .filter(path -> !path.equals(this.rootLocationParam))
-                    .map(this.rootLocationParam::relativize);
-        }
-        catch (IOException e) {
-            throw new RuntimeException("\"Failed to read stored file");
-        }
-    }
+//    @Override
+//    public Stream loadParams() {
+//        try {
+//            return Files.walk(this.rootLocationParam, 1)
+//                    .filter(path -> !path.equals(this.rootLocationParam))
+//                    .map(this.rootLocationParam::relativize);
+//        }
+//        catch (IOException e) {
+//            throw new RuntimeException("\"Failed to read stored file");
+//        }
+//    }
 
     public File convert(MultipartFile file) throws IOException {
         File convFile = new File(file.getOriginalFilename());

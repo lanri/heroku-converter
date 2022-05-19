@@ -43,17 +43,17 @@ public class DownloadController {
         )
                 .collect(Collectors.toList());
 
-        List fileParams = fileStorage.loadParams().map(
-                path1 ->	{
-                    String filename1 = path1.getFileName().toString();
-                    String url = MvcUriComponentsBuilder.fromMethodName(DownloadController.class,
-                            "downloadFileParam", path1.getFileName().toString()).build().toString();
-                    return new FileInfo(filename1, url);
-                }
-        )
-                .collect(Collectors.toList());
+//        List fileParams = fileStorage.loadParams().map(
+//                path1 ->	{
+//                    String filename1 = path1.getFileName().toString();
+//                    String url = MvcUriComponentsBuilder.fromMethodName(DownloadController.class,
+//                            "downloadFileParam", path1.getFileName().toString()).build().toString();
+//                    return new FileInfo(filename1, url);
+//                }
+//        )
+//                .collect(Collectors.toList());
         model.addAttribute("files", fileInfos);
-        model.addAttribute("fileparams", fileParams);
+        //model.addAttribute("fileparams", fileParams);
         return "listfiles";
     }
 
@@ -68,13 +68,13 @@ public class DownloadController {
                 .body(file);
     }
 
-    @GetMapping("/files/param/{filename}")
-    public ResponseEntity downloadFileParam(@PathVariable String filename) {
-        Resource file = fileStorage.loadFileParam(filename);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
-                .body(file);
-    }
+//    @GetMapping("/files/param/{filename}")
+//    public ResponseEntity downloadFileParam(@PathVariable String filename) {
+//        Resource file = fileStorage.loadFileParam(filename);
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+//                .body(file);
+//    }
 
     @GetMapping(value = "delete_file")
     public String handleDeleteFile(@RequestParam(name="filename")String filename) throws IOException {
@@ -82,9 +82,9 @@ public class DownloadController {
         return "redirect:/files";
     }
 
-    @GetMapping(value = "delete_param")
-    public String handleDeleteParam(@RequestParam(name="filename")String filename) throws IOException {
-        fileStorage.deleteParam(filename);
-        return "redirect:/files";
-    }
+//    @GetMapping(value = "delete_param")
+//    public String handleDeleteParam(@RequestParam(name="filename")String filename) throws IOException {
+//        fileStorage.deleteParam(filename);
+//        return "redirect:/files";
+//    }
 }
