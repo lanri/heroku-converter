@@ -25,6 +25,7 @@ public class ParameterServiceImpl implements ParameterService {
     			
         HashMap<String,Parameter> params = new HashMap<>();
 
+<<<<<<< HEAD
         log.info("value : ",excelInfo.getSheet().getRow(2).getCell(1).getStringCellValue());
 
         for (int k = 1; k < excelInfo.getRow(); k++) {
@@ -39,6 +40,20 @@ public class ParameterServiceImpl implements ParameterService {
             parameter.setMandatory(excelInfo.getSheet().getRow(k).getCell(5).getStringCellValue());
             parameter.setKeterangan(excelInfo.getSheet().getRow(k).getCell(6).getStringCellValue());
             parameter.setCatatan(excelInfo.getSheet().getRow(k).getCell(7).getStringCellValue());
+=======
+        
+        log.info("excelinfo"+excelInfo.toString());
+log.info("excelinfo"+excelInfo.getSheet().getRow(1).getCell(0));
+log.info("excelinfo"+excelInfo.getSheet().getRow(1).getCell(0).getStringCellValue());
+for (int k = 1; k < excelInfo.getRow(); k++) {
+            Parameter parameter = new Parameter();
+            parameter.setValue(excelInfo.getSheet().getRow(k).getCell(0).getStringCellValue());
+            parameter.setType(excelInfo.getSheet().getRow(k).getCell(1).getStringCellValue());
+            parameter.setPanjang((int) excelInfo.getSheet().getRow(k).getCell(2).getNumericCellValue());
+            //parameter.setSize((int) excelInfo.getSheet().getRow(k).getCell(3).getNumericCellValue());
+            parameter.setMandatory(excelInfo.getSheet().getRow(k).getCell(3).getStringCellValue());
+            parameter.setKeterangan(excelInfo.getSheet().getRow(k).getCell(4).getStringCellValue());
+>>>>>>> origin/master
             params.put(parameter.getValue(),parameter);
         }
         return params;
