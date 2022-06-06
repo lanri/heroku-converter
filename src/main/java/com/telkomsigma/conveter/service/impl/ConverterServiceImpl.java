@@ -168,7 +168,7 @@ public class ConverterServiceImpl implements ConverterService {
         int selisih =0;
         switch (cell.getCellType()) {
             case Cell.CELL_TYPE_NUMERIC:
-                v = String.valueOf((int) cell.getNumericCellValue()).replaceAll("\\s", "");
+                v = String.valueOf((int)cell.getNumericCellValue()).replaceAll("\\s", "");
                 log.info("data numeric : "+v);
                 //validate param
                 validateParam(p, 0, v, rowcell);
@@ -178,7 +178,7 @@ public class ConverterServiceImpl implements ConverterService {
                     selisih = p.getPanjang()-v.length();
                     log.info("selisih "+selisih);
                     for (int i = 0; i < selisih; i++) {
-                        data.append("0");
+                        data.append(" ");
                     }
                 }
                 data.append(v);
@@ -186,7 +186,9 @@ public class ConverterServiceImpl implements ConverterService {
             case Cell.CELL_TYPE_STRING:
                 //v = cell.getStringCellValue().replaceAll("\\s", "");
                 v = cell.getStringCellValue();
+                log.info("TYPE "+p.getType());
                 log.info("data string : "+v);
+                if(p.getType().equals("AN")) {
                 validateParam(p, 1, v, rowcell);
                 data.append(v);
                 //validate size
@@ -197,9 +199,25 @@ public class ConverterServiceImpl implements ConverterService {
                         data.append(" ");
                     }
                 }
+                }else {
+                	validateParam(p, 1, v, rowcell);
+                	log.info("GOTCHA--------");
+                	//validate size
+                    if(p.getPanjang()>v.length()){
+                        selisih = p.getPanjang()-v.length();
+                        log.info("selisih "+selisih);
+                        for (int i = 0; i < selisih; i++) {
+                            data.append(" ");
+                        }
+                    }
+                    data.append(v);
+                }
                 break;
             default:
-                data.append(cell);
+            	for (int i = 0; i < p.getPanjang(); i++) {
+                    data.append(" ");
+                }
+                //data.append(cell);
         }
         return data;
     }
