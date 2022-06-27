@@ -75,7 +75,7 @@ public class ConverterServiceImpl implements ConverterService {
                     //log.info(parameter.toString());
                     params.put(parameter.getValue(),parameter);
                 }
-                //log.info(params.toString());
+                log.info(params.toString());
                 
                 //read sheet 1 then process with parameter
                 //.info(workbook.getSheetAt(1).getSheetName());
@@ -121,6 +121,7 @@ public class ConverterServiceImpl implements ConverterService {
                     cell = sheetData.getRow(k).getCell(l);
                     p = parameters.get(sheetData.getRow(0).getCell(l).getStringCellValue());
                     log.info("PARAM : "+p.getValue());
+                    log.info("MANDATORY : "+p.getMandatory());
                     if (p.getKeterangan().equals(Constant.header) && k == 1) {
                         //set Header
                         log.info("HEADER");
@@ -136,6 +137,7 @@ public class ConverterServiceImpl implements ConverterService {
                 	log.info("----NULL----");
                     //dataDetail.append(" ");
                     //dataHeader.append(" ");
+                	log.info("Mandatory "+p.getMandatory());
                     if (p.getMandatory().equals(Constant.mandatory)) {
                         //error mandatory
                         throw new ExceptionConvertHandler(ErrorConstant.ERROR_MANDATORY + p.getValue() + '!' +
