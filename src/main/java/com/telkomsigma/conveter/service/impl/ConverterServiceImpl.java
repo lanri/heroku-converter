@@ -134,16 +134,18 @@ public class ConverterServiceImpl implements ConverterService {
 
                     }
                 } catch (NullPointerException e) {
-                	log.info("----NULL----");
+                	//log.info("----NULL----");
                     //dataDetail.append(" ");
                     //dataHeader.append(" ");
-                	log.info("Mandatory "+p.getMandatory());
+                	//log.info("Mandatory "+p.getMandatory());
                     if (p.getMandatory().equals(Constant.mandatory)) {
                         //error mandatory
+                    	log.info("HAI");
                         throw new ExceptionConvertHandler(ErrorConstant.ERROR_MANDATORY + p.getValue() + '!' +
                                 ErrorConstant.ERROR_ROW + rowcell[0] +
                                 ErrorConstant.ERROR_CELL + rowcell[1] + ")");
                     }else {
+                    	log.info("HELLO");
                     	addWhiteSpaceNullValue(dataHeader, p.getPanjang());
                     	addWhiteSpaceNullValue(dataDetail, p.getPanjang());
                     }

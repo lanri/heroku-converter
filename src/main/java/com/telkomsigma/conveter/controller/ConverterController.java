@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.telkomsigma.conveter.errorHandler.ExceptionConvertHandler;
 import com.telkomsigma.conveter.service.ConverterService;
-import com.telkomsigma.conveter.service.FileStorageService;
 
 
 @Controller
@@ -23,10 +22,9 @@ public class ConverterController {
 
     Logger log = LoggerFactory.getLogger(this.getClass().getName());
 
-	
-	@Autowired FileStorageService fileStorage;
-	 
-	@Autowired ConverterService converter;
+		 
+	@Autowired 
+	ConverterService converter;
 	 
     //private static final String UPLOAD_DIR = "D:/";
 
